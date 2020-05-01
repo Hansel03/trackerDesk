@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   title = "trackerDesk";
   taxistas: Taxista[] = [];
   initMap = false;
+  siguiendoA: string = null;
+  siguiendoNombre: string = null;
 
   constructor(private taxistasService: TaxistasService) {}
 
@@ -34,6 +36,26 @@ export class AppComponent implements OnInit {
         this.lat = data[0].lat;
         this.lng = data[0].lng;
       }
+
+      if (this.siguiendoA) {
+        data.forEach((taxista) => {
+          if (taxista.clave === this.siguiendoA) {
+            this.lat = taxista.lat;
+            this.lng = taxista.lng;
+          }
+        });
+      }
     });
+  }
+
+  seguir(taxista: Taxista) {
+    this.siguiendoA = taxista.clave;
+    this.siguiendoNombre = taxista.nombre;
+    this.constultarTaxistas();
+  }
+
+  dejarDeSeguir() {
+    this.siguiendoA = null;
+    this.siguiendoNombre = null;
   }
 }

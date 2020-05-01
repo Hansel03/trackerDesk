@@ -5,7 +5,7 @@
 
 <div class="row p-3">
     <div class="col-8">
-        <h3>Mapa</h3>
+        <h3>Mapa <small *ngIf="siguiendoNombre">Siguiendo a : {{siguiendoNombre}}</small></h3>
         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
             <agm-marker *ngFor="let taxista of taxistas" [latitude]="taxista.lat" [longitude]="taxista.lng" [markerDraggable]="false">
             </agm-marker>
@@ -14,9 +14,13 @@
     <div class="col-4">
         <h3>Taxistas</h3>
         <div class="list-group" *ngFor="let taxista of taxistas">
-            <button type="button" class="list-group-item list-group-item-action active">
+            <button (click)="seguir(taxista)" type="button" class="list-group-item list-group-item-action" [ngClass]="{'active': taxista.clave === siguiendoA}">
         {{taxista.nombre}}
       </button>
         </div>
+        <br>
+        <button (click)="dejarDeSeguir()" *ngIf="siguiendoNombre" class="btn btn-primary btn-block">
+      Dejar de seguir
+    </button>
     </div>
 </div>
