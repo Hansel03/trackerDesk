@@ -7,21 +7,15 @@
     <div class="col-8">
         <h3>Mapa</h3>
         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
-            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false">
+            <agm-marker *ngFor="let taxista of taxistas" [latitude]="taxista.lat" [longitude]="taxista.lng" [markerDraggable]="false">
             </agm-marker>
         </agm-map>
     </div>
     <div class="col-4">
         <h3>Taxistas</h3>
-        <div class="list-group">
+        <div class="list-group" *ngFor="let taxista of taxistas">
             <button type="button" class="list-group-item list-group-item-action active">
-        Cras justo odio
-      </button>
-            <button type="button" class="list-group-item list-group-item-action">
-        Dapibus ac facilisis in
-      </button>
-            <button type="button" class="list-group-item list-group-item-action">
-        Morbi leo risus
+        {{taxista.nombre}}
       </button>
         </div>
     </div>

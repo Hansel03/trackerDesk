@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "trackerDesk",
+      "public": "dist/trackerDesk",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
